@@ -1,0 +1,52 @@
+//creating a objects in document
+> db.hackernews.insert({"title":"hacker news RSS feeds","URL":"(edavis.github.io)","points":"62 points","time":"1 hour ago","comments":"15 comments","user":"tejado"});
+WriteResult({ "nInserted" : 1 })
+> db.hackernews.insert({"title":"full employment","URL":"(locusmag.com)","points":"74 points","time":"6 hour ago","comments":"86 comments","user":"anigbrowl"});
+WriteResult({ "nInserted" : 1 })
+> db.hackernews.insert({"title":"vienna,city of paradox","URL":"(aeon.co)","points":"104 points","time":"5 hour ago","comments":"27 comments","user":"tintinnabula"});
+WriteResult({ "nInserted" : 1 })
+> db.hackernews.insert({"title":"nsibidi","URL":"(wikipedia.org)","points":"220 points","time":"13 hour ago","comments":"110 comments","user":"benbreen"});
+WriteResult({ "nInserted" : 1 })
+
+//listing collections
+> show collections
+hackernews
+
+//reading documents 
+> db.hackernews.find()
+{ "_id" : ObjectId("5f07181eb02ba923d12f6e58"), "title" : "hacker news RSS feeds", "URL" : "(edavis.github.io)", "points" : "62 points", "time" : "1 hour ago", "comments" : "15 comments", "user" : "tejado" }
+{ "_id" : ObjectId("5f071942b02ba923d12f6e59"), "title" : "full employment", "URL" : "(locusmag.com)", "points" : "74 points", "time" : "6 hour ago", "comments" : "86 comments", "user" : "anigbrowl" }
+{ "_id" : ObjectId("5f071a72b02ba923d12f6e5a"), "title" : "vienna,city of paradox", "URL" : "(aeon.co)", "points" : "104 points", "time" : "5 hour ago", "comments" : "27 comments", "user" : "tintinnabula" }
+{ "_id" : ObjectId("5f071b19b02ba923d12f6e5b"), "title" : "nsibidi", "URL" : "(wikipedia.org)", "points" : "220 points", "time" : "13 hour ago", "comments" : "110 comments", "user" : "benbreen" }
+
+//updating time in document
+> db.hackernews.update({"time":"1 hour ago"},{$set:{"time":"2 hours ago"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+> db.hackernews.find()
+{ "_id" : ObjectId("5f07181eb02ba923d12f6e58"), "title" : "hacker news RSS feeds", "URL" : "(edavis.github.io)", "points" : "62 points", "time" : "2 hours ago", "comments" : "15 comments", "user" : "tejado" }
+{ "_id" : ObjectId("5f071942b02ba923d12f6e59"), "title" : "full employment", "URL" : "(locusmag.com)", "points" : "74 points", "time" : "6 hour ago", "comments" : "86 comments", "user" : "anigbrowl" }
+{ "_id" : ObjectId("5f071a72b02ba923d12f6e5a"), "title" : "vienna,city of paradox", "URL" : "(aeon.co)", "points" : "104 points", "time" : "5 hour ago", "comments" : "27 comments", "user" : "tintinnabula" }
+{ "_id" : ObjectId("5f071b19b02ba923d12f6e5b"), "title" : "nsibidi", "URL" : "(wikipedia.org)", "points" : "220 points", "time" : "13 hour ago", "comments" : "110 comments", "user" : "benbreen" }
+
+//getting document by title
+> db.hackernews.find({"title":"full employment"})
+{ "_id" : ObjectId("5f071942b02ba923d12f6e59"), "title" : "full employment", "URL" : "(locusmag.com)", "points" : "74 points", "time" : "6 hour ago", "comments" : "86 comments", "user" : "anigbrowl" }
+
+//getting document by user name
+> db.hackernews.find({"user":"tejado"})
+{ "_id" : ObjectId("5f07181eb02ba923d12f6e58"), "title" : "hacker news RSS feeds", "URL" : "(edavis.github.io)", "points" : "62 points", "time" : "2 hours ago", "comments" : "15 comments", "user" : "tejado" }
+
+//getting documents by points
+> db.hackernews.find({"points":"74 points"})
+{ "_id" : ObjectId("5f071942b02ba923d12f6e59"), "title" : "full employment", "URL" : "(locusmag.com)", "points" : "74 points", "time" : "6 hour ago", "comments" : "86 comments", "user" : "anigbrowl" }
+
+//deleting a document
+> db.hackernews.remove({"title":"vienna,city of paradox","URL":"(aeon.co)","points":"104 points","time":"5 hour ago","comments":"27 comments","user":"tintinnabula"});
+WriteResult({ "nRemoved" : 1 })
+
+//listing all documents in database
+> db.hackernews.find()
+{ "_id" : ObjectId("5f07181eb02ba923d12f6e58"), "title" : "hacker news RSS feeds", "URL" : "(edavis.github.io)", "points" : "62 points", "time" : "2 hours ago", "comments" : "15 comments", "user" : "tejado" }
+{ "_id" : ObjectId("5f071942b02ba923d12f6e59"), "title" : "full employment", "URL" : "(locusmag.com)", "points" : "74 points", "time" : "6 hour ago", "comments" : "86 comments", "user" : "anigbrowl" }
+{ "_id" : ObjectId("5f071b19b02ba923d12f6e5b"), "title" : "nsibidi", "URL" : "(wikipedia.org)", "points" : "220 points", "time" : "13 hour ago", "comments" : "110 comments", "user" : "benbreen" }
